@@ -22,6 +22,7 @@ export default async function template({
 <head>
     <meta charset="utf-8">
     <title>${title}</title>
+    <base href="${process.env.BASEURL || "/"}" />
     <link rel="stylesheet" type="text/css" href="vuetify.min.css">
     ${links}
     ${scripts}
