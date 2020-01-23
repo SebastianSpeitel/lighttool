@@ -4,9 +4,9 @@ import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import globals from "rollup-plugin-node-globals";
 import html from "@rollup/plugin-html";
-import postcss from "rollup-plugin-postcss";
 import { terser } from "rollup-plugin-terser";
 import copy from "rollup-plugin-copy";
+import ignore from "rollup-plugin-ignore-import";
 
 import template from "./src/template";
 
@@ -41,7 +41,10 @@ export default {
         isProduction: production
       }
     }),
-    postcss(),
+    ignore({
+      include: [/.*\.sass/],
+      exclude: []
+    }),
     production && terser()
   ]
 };
