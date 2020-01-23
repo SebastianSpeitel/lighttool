@@ -24,6 +24,7 @@ export default async function template({
     <title>${title}</title>
     <base href="${process.env.BASEURL || "/"}" />
     <link rel="stylesheet" type="text/css" href="vuetify.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     ${links}
     ${scripts}
 </head>
