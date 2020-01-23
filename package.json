@@ -1,0 +1,45 @@
+{
+  "name": "lighttool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "build:production": "NODE_ENV=production npm run build",
+    "serve": "serve dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SebastianSpeitel/lighttool.git"
+  },
+  "author": "Sebastian Speitel",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/SebastianSpeitel/lighttool/issues"
+  },
+  "homepage": "https://github.com/SebastianSpeitel/lighttool#readme",
+  "devDependencies": {
+    "@mdi/js": "^4.8.95",
+    "@rollup/plugin-commonjs": "^11.0.1",
+    "@rollup/plugin-html": "^0.1.1",
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "@rollup/plugin-typescript": "^2.1.0",
+    "nanolit": "^1.0.0",
+    "rollup": "^1.29.1",
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-node-globals": "^1.4.0",
+    "rollup-plugin-postcss": "^2.0.4",
+    "rollup-plugin-terser": "^5.2.0",
+    "rollup-plugin-vue": "^5.1.6",
+    "sass": "^1.25.0",
+    "serve": "^11.3.0",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.5",
+    "vue": "^2.6.11",
+    "vue-class-component": "^7.2.2",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify": "^2.2.6",
+    "vuex": "^3.1.2"
+  },
+  "dependencies": {}
+}
