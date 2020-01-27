@@ -5,6 +5,7 @@
       <v-container tag="main">
         <stepper />
         <settings v-if="session.step === 0" />
+        <rooms v-if="session.step === 1" />
       </v-container>
     </v-content>
     <fab v-if="session" />
@@ -21,6 +22,7 @@ import { VApp, VContent, VContainer, VCard, VSpacer } from "vuetify/lib";
 import Stepper from "./Stepper.vue";
 import TopBar from "./TopBar.vue";
 const Settings = () => import("./steps/Settings.vue");
+const Rooms = () => import("./steps/Rooms.vue");
 const Fab = () => import("./steps/ShareFAB.vue");
 
 export default Vue.extend({
@@ -34,6 +36,7 @@ export default Vue.extend({
     VCard,
     VSpacer,
     Settings,
+    Rooms,
     Fab
   },
   store,
