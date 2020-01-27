@@ -8,6 +8,8 @@ enum Step {}
 interface Session {
   step: Step;
   name: string;
+  roomTypeCategory: string;
+  roomType: string;
 }
 
 interface Root {

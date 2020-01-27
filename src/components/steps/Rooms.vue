@@ -6,7 +6,9 @@
           <v-list-item
             v-for="cat of categories"
             :key="cat.name"
-            :href="'#' + cat.name"
+            @click="selectCategory(cat.name)"
+            v-longpress="() => showInfo(cat.description, cat.name)"
+            :class="selectedCategory === cat.name ? 'accent' : ''"
           >
             <v-list-item-content :title="cat.description">
               <v-list-item-title>{{ cat.name }}</v-list-item-title>
@@ -17,7 +19,7 @@
                 icon
                 @click.stop.prevent="showInfo(cat.description, cat.name)"
               >
-                <v-icon color="grey lighten-1" v-text="iconInfo" />
+                <v-icon color="primary" v-text="iconInfo" />
               </v-btn>
             </v-list-item-action>
           </v-list-item>
@@ -26,14 +28,19 @@
       <v-col cols="12" md="6">
         <v-list three-line>
           <template v-for="cat of categories">
-            <v-subheader
-              v-text="cat.name"
-              :key="'h' + cat.name"
-              :id="cat.name"
-            />
+            <v-subheader v-text="cat.name" :key="'h' + cat.name" />
             <v-list-item
               v-for="room of cat.rooms"
               :key="cat.name + ':' + room.name"
+              v-longpress="() => showInfo(room.description, room.name)"
+              @click="selectRoom(room.name);selectCategory(cat.name)"
+              :class="
+                selectedRoom === room.name
+                  ? 'secondary'
+                  : selectedCategory === cat.name
+                  ? 'accent'
+                  : ''
+              "
             >
               <v-list-item-content>
                 <v-list-item-title>{{ room.name }}</v-list-item-title>
@@ -46,7 +53,7 @@
                   icon
                   @click.stop.prevent="showInfo(room.description, room.name)"
                 >
-                  <v-icon color="grey lighten-1" v-text="iconInfo" />
+                  <v-icon color="primary" v-text="iconInfo" />
                 </v-btn>
               </v-list-item-action>
             </v-list-item>
@@ -60,11 +67,6 @@
           <span class="headline">{{ infoTitle }}</span>
         </v-card-title>
         <v-card-text>{{ infoText }}</v-card-text>
-        <!-- <v-card-actions>
-          <v-btn color="accent" text @click="infoModal = false"
-            >Schließen</v-btn
-          >
-        </v-card-actions> -->
       </v-card>
     </v-dialog>
   </v-container>
@@ -425,6 +427,22 @@ export default class Rooms extends Vue {
     this.infoModal = false;
     await Vue.nextTick();
     this.infoModal = true;
+  }
+
+  get selectedCategory() {
+    return this.$store.state.session.roomTypeCategory;
+  }
+
+  get selectedRoom() {
+    return this.$store.state.session.roomType;
+  }
+
+  selectCategory(category: string) {
+    this.$store.commit("session", { roomTypeCategory: category });
+  }
+
+  selectRoom(room: string) {
+    this.$store.commit("session", { roomType: room });
   }
 }
 </script>
