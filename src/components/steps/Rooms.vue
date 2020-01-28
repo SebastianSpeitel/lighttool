@@ -33,7 +33,11 @@
               v-for="room of cat.rooms"
               :key="cat.name + ':' + room.name"
               v-longpress="() => showInfo(room.description, room.name)"
-              @click="selectRoom(room.name);selectCategory(cat.name)"
+              @click="
+                selectRoom(room.name);
+                selectCategory(cat.name);
+                nextStep();
+              "
               :class="
                 selectedRoom === room.name
                   ? 'secondary'
@@ -443,6 +447,10 @@ export default class Rooms extends Vue {
 
   selectRoom(room: string) {
     this.$store.commit("session", { roomType: room });
+  }
+
+  nextStep() {
+    this.$store.commit("continue");
   }
 }
 </script>

@@ -10,6 +10,9 @@ interface Session {
   name: string;
   roomTypeCategory: string;
   roomType: string;
+  author: string;
+  client: string;
+  contact: string;
 }
 
 interface Root {
@@ -44,6 +47,10 @@ export default new Vuex.Store<Root>({
   mutations: {
     session(state, session) {
       state.session = { ...state.session, ...session };
+      localStorage.setItem("session", JSON.stringify(state.session));
+    },
+    continue(state) {
+      state.session = { ...state.session, step: state.session.step + 1 };
       localStorage.setItem("session", JSON.stringify(state.session));
     }
   },
