@@ -5,6 +5,8 @@ Vue.use(Vuex);
 
 enum Step {}
 
+enum Demand {}
+
 interface Session {
   step: Step;
   name: string;
@@ -13,6 +15,9 @@ interface Session {
   author: string;
   client: string;
   contact: string;
+  demands: {
+    [d: string]: number;
+  };
 }
 
 interface Root {
@@ -47,6 +52,13 @@ export default new Vuex.Store<Root>({
   mutations: {
     session(state, session) {
       state.session = { ...state.session, ...session };
+      localStorage.setItem("session", JSON.stringify(state.session));
+    },
+    demands(state, demands) {
+      state.session = {
+        ...state.session,
+        demands: { ...state.session.demands, ...demands }
+      };
       localStorage.setItem("session", JSON.stringify(state.session));
     },
     continue(state) {
